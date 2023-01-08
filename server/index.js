@@ -7,12 +7,14 @@ import multer from 'multer';
 import helmet from 'helmet';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import connectDB from './config/db.js';
 
 /* Configurations */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 dotenv.config();
+connectDB();
 
 const app = express();
 app.use(express.json());
@@ -34,3 +36,9 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage });
+
+/* Server Setup */
+const PORT = process.env.PORT || 6000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port: ${PORT}`);
+});
