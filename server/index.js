@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import postRoutes from './routes/postRoutes.js';
 
 /* Configurations */
 const __filename = fileURLToPath(import.meta.url);
@@ -33,6 +34,7 @@ app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 /* Routes */
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
+app.use('/posts', postRoutes);
 
 /* Server Setup */
 const PORT = process.env.PORT || 6000;
