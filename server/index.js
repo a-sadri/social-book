@@ -7,7 +7,9 @@ import multer from 'multer';
 import helmet from 'helmet';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 import connectDB from './config/db.js';
+import authRoutes from './routes/authRoutes.js';
 
 /* Configurations */
 const __filename = fileURLToPath(import.meta.url);
@@ -36,6 +38,9 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage });
+
+/* Routes */
+app.use('/auth', authRoutes);
 
 /* Server Setup */
 const PORT = process.env.PORT || 6000;
